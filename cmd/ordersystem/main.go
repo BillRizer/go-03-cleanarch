@@ -15,12 +15,16 @@ import (
 	"github.com/devfullcycle/20-CleanArch/internal/infra/grpc/service"
 	"github.com/devfullcycle/20-CleanArch/internal/infra/web/webserver"
 	"github.com/devfullcycle/20-CleanArch/pkg/events"
+	_ "github.com/golang-migrate/migrate/v4/source/file"
 	"github.com/streadway/amqp"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
 	// mysql
 	_ "github.com/go-sql-driver/mysql"
+
+	"github.com/golang-migrate/migrate/v4"
+	"github.com/golang-migrate/migrate/v4/database/mysql"
 )
 
 func main() {
@@ -35,6 +39,10 @@ func main() {
 	}
 	defer db.Close()
 
+	migrationsErr := runMigrations(db, "file://migrations")
+	if migrationsErr != nil {
+		panic(migrationsErr)
+	}
 	rabbitMQChannel := getRabbitMQChannel()
 
 	eventDispatcher := events.NewEventDispatcher()
@@ -82,4 +90,25 @@ func getRabbitMQChannel() *amqp.Channel {
 		panic(err)
 	}
 	return ch
+}
+
+func runMigrations(db *sql.DB, migrationPath string) error {
+	driver, err := mysql.WithInstance(db, &mysql.Config{})
+	if err != nil {
+		return fmt.Errorf("initializing driver error: %w", err)
+	}
+	m, err := migrate.NewWithDatabaseInstance(
+		migrationPath,
+		"mysql",
+		driver,
+	)
+	if err != nil {
+		return fmt.Errorf("Migrate error: %w", err)
+	}
+
+	if err := m.Up(); err != nil && err != migrate.ErrNoChange {
+		return fmt.Errorf("Migrate UP error : %w", err)
+	}
+	fmt.Println("DB Migration applied")
+	return nil
 }
