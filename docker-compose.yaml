@@ -14,7 +14,11 @@ services:
     volumes:
       - .docker/mysql:/var/lib/mysql
       - ./migrations:/migrations
-   
+    
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 2s
+      retries: 5
 
   rabbitmq:
     image: rabbitmq:3-management
@@ -31,7 +35,8 @@ services:
     image: migrate/migrate
     command: -path=/migrations -database "mysql://${DB_USER}:${DB_PASSWORD}@tcp(${DB_HOST}:${DB_PORT})/${DB_NAME}" up
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     volumes:
       - ./migrations:/migrations
 
