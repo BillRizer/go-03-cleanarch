@@ -39,7 +39,7 @@ func main() {
 	}
 	defer db.Close()
 
-	migrationsErr := runMigrations(db, "file://migrations")
+	migrationsErr := runMigrations(db, "file://../../migrations")
 	if migrationsErr != nil {
 		panic(migrationsErr)
 	}
@@ -55,7 +55,7 @@ func main() {
 	webserver := webserver.NewWebServer(configs.WebServerPort)
 	webOrderHandler := NewWebOrderHandler(db, eventDispatcher)
 	webserver.AddHandler("POST", "/order", webOrderHandler.Create)
-	webserver.AddHandler("GET", "/order", webOrderHandler.Create)
+	webserver.AddHandler("GET", "/order", webOrderHandler.List)
 	fmt.Println("Starting web server on port", configs.WebServerPort)
 	go webserver.Start()
 

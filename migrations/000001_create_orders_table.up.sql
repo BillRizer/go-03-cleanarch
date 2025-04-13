@@ -1,9 +1,6 @@
-CREATE TABLE IF NOT EXISTS cotations (
+CREATE TABLE IF NOT EXISTS orders (
 		id INTEGER PRIMARY KEY AUTO_INCREMENT,
-		code VARCHAR(255) NOT NULL,
-		codein VARCHAR(255) NOT NULL,
-		bid VARCHAR(255) NOT NULL,
-		ask VARCHAR(255) NOT NULL,
-		create_date VARCHAR(255) NOT NULL
-
+		price float NOT NULL,
+		tax float NOT NULL,
+		final_price float NOT NULL
 )
