@@ -11,6 +11,7 @@ import (
 	"github.com/devfullcycle/20-CleanArch/internal/usecase"
 )
 
+// CreateOrder is the resolver for the createOrder field.
 func (r *mutationResolver) CreateOrder(ctx context.Context, input *model.OrderInput) (*model.Order, error) {
 	dto := usecase.OrderInputDTO{
 		ID:    input.ID,
@@ -29,8 +30,9 @@ func (r *mutationResolver) CreateOrder(ctx context.Context, input *model.OrderIn
 	}, nil
 }
 
-func (r *queryResolver) ListOrder(ctx context.Context) ([]*model.Order, error) {
-	ordersOutput, err := r.ListOrderUseCase.Execute()
+// ListOrders is the resolver for the listOrders field.
+func (r *queryResolver) ListOrders(ctx context.Context) ([]*model.Order, error) {
+	ordersOutput, err := r.ListOrdersUseCase.Execute()
 	if err != nil {
 		return nil, err
 	}

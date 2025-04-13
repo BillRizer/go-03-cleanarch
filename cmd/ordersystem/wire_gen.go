@@ -31,10 +31,10 @@ func NewCreateOrderUseCase(db *sql.DB, eventDispatcher events.EventDispatcherInt
 	return createOrderUseCase
 }
 
-func NewListOrderUseCase(db *sql.DB) *usecase.TListOrderUseCase {
+func NewListOrdersUseCase(db *sql.DB) *usecase.TListOrdersUseCase {
 	orderRepository := database.NewOrderRepository(db)
-	tListOrderUseCase := usecase.ListOrderUseCase(orderRepository)
-	return tListOrderUseCase
+	tListOrdersUseCase := usecase.ListOrdersUseCase(orderRepository)
+	return tListOrdersUseCase
 }
 
 func NewWebOrderHandler(db *sql.DB, eventDispatcher events.EventDispatcherInterface) *web.WebOrderHandler {

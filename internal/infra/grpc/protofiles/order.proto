@@ -21,13 +21,13 @@ message Order {
   float tax = 3;
   float final_price = 4;
 }
-message ListOrdersRequest {}
-message ListOrdersResponse {
+message ListOrderssRequest {}
+message ListOrderssResponse {
   repeated Order orders = 1;
 }
 
 service OrderService {
   rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
-  rpc ListOrder(ListOrdersRequest) returns (ListOrdersResponse);
+  rpc ListOrders(ListOrderssRequest) returns (ListOrderssResponse);
 }
 

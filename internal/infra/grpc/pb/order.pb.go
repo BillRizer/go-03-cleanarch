@@ -217,26 +217,26 @@ func (x *Order) GetFinalPrice() float32 {
 	return 0
 }
 
-type ListOrdersRequest struct {
+type ListOrderssRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListOrdersRequest) Reset() {
-	*x = ListOrdersRequest{}
+func (x *ListOrderssRequest) Reset() {
+	*x = ListOrderssRequest{}
 	mi := &file_internal_infra_grpc_protofiles_order_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListOrdersRequest) String() string {
+func (x *ListOrderssRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListOrdersRequest) ProtoMessage() {}
+func (*ListOrderssRequest) ProtoMessage() {}
 
-func (x *ListOrdersRequest) ProtoReflect() protoreflect.Message {
+func (x *ListOrderssRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_internal_infra_grpc_protofiles_order_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -248,32 +248,32 @@ func (x *ListOrdersRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListOrdersRequest.ProtoReflect.Descriptor instead.
-func (*ListOrdersRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListOrderssRequest.ProtoReflect.Descriptor instead.
+func (*ListOrderssRequest) Descriptor() ([]byte, []int) {
 	return file_internal_infra_grpc_protofiles_order_proto_rawDescGZIP(), []int{3}
 }
 
-type ListOrdersResponse struct {
+type ListOrderssResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Orders        []*Order               `protobuf:"bytes,1,rep,name=orders,proto3" json:"orders,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListOrdersResponse) Reset() {
-	*x = ListOrdersResponse{}
+func (x *ListOrderssResponse) Reset() {
+	*x = ListOrderssResponse{}
 	mi := &file_internal_infra_grpc_protofiles_order_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListOrdersResponse) String() string {
+func (x *ListOrderssResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListOrdersResponse) ProtoMessage() {}
+func (*ListOrderssResponse) ProtoMessage() {}
 
-func (x *ListOrdersResponse) ProtoReflect() protoreflect.Message {
+func (x *ListOrderssResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_internal_infra_grpc_protofiles_order_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -285,12 +285,12 @@ func (x *ListOrdersResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListOrdersResponse.ProtoReflect.Descriptor instead.
-func (*ListOrdersResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListOrderssResponse.ProtoReflect.Descriptor instead.
+func (*ListOrderssResponse) Descriptor() ([]byte, []int) {
 	return file_internal_infra_grpc_protofiles_order_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *ListOrdersResponse) GetOrders() []*Order {
+func (x *ListOrderssResponse) GetOrders() []*Order {
 	if x != nil {
 		return x.Orders
 	}
@@ -317,13 +317,14 @@ const file_internal_infra_grpc_protofiles_order_proto_rawDesc = "" +
 	"\x05price\x18\x02 \x01(\x02R\x05price\x12\x10\n" +
 	"\x03tax\x18\x03 \x01(\x02R\x03tax\x12\x1f\n" +
 	"\vfinal_price\x18\x04 \x01(\x02R\n" +
-	"finalPrice\"\x13\n" +
-	"\x11ListOrdersRequest\"7\n" +
-	"\x12ListOrdersResponse\x12!\n" +
-	"\x06orders\x18\x01 \x03(\v2\t.pb.OrderR\x06orders2\x8a\x01\n" +
+	"finalPrice\"\x14\n" +
+	"\x12ListOrderssRequest\"8\n" +
+	"\x13ListOrderssResponse\x12!\n" +
+	"\x06orders\x18\x01 \x03(\v2\t.pb.OrderR\x06orders2\x8d\x01\n" +
 	"\fOrderService\x12>\n" +
-	"\vCreateOrder\x12\x16.pb.CreateOrderRequest\x1a\x17.pb.CreateOrderResponse\x12:\n" +
-	"\tListOrder\x12\x15.pb.ListOrdersRequest\x1a\x16.pb.ListOrdersResponseB\x18Z\x16internal/infra/grpc/pbb\x06proto3"
+	"\vCreateOrder\x12\x16.pb.CreateOrderRequest\x1a\x17.pb.CreateOrderResponse\x12=\n" +
+	"\n" +
+	"ListOrders\x12\x16.pb.ListOrderssRequest\x1a\x17.pb.ListOrderssResponseB\x18Z\x16internal/infra/grpc/pbb\x06proto3"
 
 var (
 	file_internal_infra_grpc_protofiles_order_proto_rawDescOnce sync.Once
@@ -342,15 +343,15 @@ var file_internal_infra_grpc_protofiles_order_proto_goTypes = []any{
 	(*CreateOrderRequest)(nil),  // 0: pb.CreateOrderRequest
 	(*CreateOrderResponse)(nil), // 1: pb.CreateOrderResponse
 	(*Order)(nil),               // 2: pb.Order
-	(*ListOrdersRequest)(nil),   // 3: pb.ListOrdersRequest
-	(*ListOrdersResponse)(nil),  // 4: pb.ListOrdersResponse
+	(*ListOrderssRequest)(nil),  // 3: pb.ListOrderssRequest
+	(*ListOrderssResponse)(nil), // 4: pb.ListOrderssResponse
 }
 var file_internal_infra_grpc_protofiles_order_proto_depIdxs = []int32{
-	2, // 0: pb.ListOrdersResponse.orders:type_name -> pb.Order
+	2, // 0: pb.ListOrderssResponse.orders:type_name -> pb.Order
 	0, // 1: pb.OrderService.CreateOrder:input_type -> pb.CreateOrderRequest
-	3, // 2: pb.OrderService.ListOrder:input_type -> pb.ListOrdersRequest
+	3, // 2: pb.OrderService.ListOrders:input_type -> pb.ListOrderssRequest
 	1, // 3: pb.OrderService.CreateOrder:output_type -> pb.CreateOrderResponse
-	4, // 4: pb.OrderService.ListOrder:output_type -> pb.ListOrdersResponse
+	4, // 4: pb.OrderService.ListOrders:output_type -> pb.ListOrderssResponse
 	3, // [3:5] is the sub-list for method output_type
 	1, // [1:3] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
