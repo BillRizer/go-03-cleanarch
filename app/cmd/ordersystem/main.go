@@ -39,7 +39,7 @@ func main() {
 	}
 	defer db.Close()
 
-	migrationsErr := runMigrations(db, "file://../../migrations")
+	migrationsErr := runMigrations(db, configs.MigrationPath)
 	if migrationsErr != nil {
 		panic(migrationsErr)
 	}
@@ -53,7 +53,7 @@ func main() {
 	createOrderUseCase := NewCreateOrderUseCase(db, eventDispatcher)
 	listOrdersUseCase := NewListOrdersUseCase(db)
 
-	webserver := webserver.NewWebServer(configs.WebServerPort)
+	webserver := webserver.NewWebServer(configs.WebServerHost + ":" + configs.WebServerPort)
 	webOrderHandler := NewWebOrderHandler(db, eventDispatcher)
 	webserver.AddHandler("POST", "/order", webOrderHandler.Create)
 	webserver.AddHandler("GET", "/order", webOrderHandler.List)
@@ -84,7 +84,7 @@ func main() {
 }
 
 func getRabbitMQChannel() *amqp.Channel {
-	conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
+	conn, err := amqp.Dial("amqp://guest:guest@rabbitmq:5672/")
 	if err != nil {
 		panic(err)
 	}

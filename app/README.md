@@ -14,13 +14,8 @@ git clone https://github.com/BillRizer/go-03-cleanarch.git
 
 cd go-03-cleanarch
 
-#run DB and Queue
+#run all 
 docker compose up --build -d
-
-cd cmd/ordersystem
-
-# run application
-go run main.go wire_gen.go 
 
 ```
 
@@ -63,7 +58,7 @@ mutation createOrder{
 **list orders:**
 ```
 query listOrders{
-    ListOrders{
+    listOrders{
         id
         Tax
         Price
@@ -81,7 +76,7 @@ https://github.com/ktr0731/evans
 
 
 ```bash 
-./evans -r repl
+./evans -r repl --host 0.0.0.0 --port 3000
 package pb
 service OrderService
 ```

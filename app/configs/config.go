@@ -10,8 +10,10 @@ type conf struct {
 	DBPassword        string `mapstructure:"DB_PASSWORD"`
 	DBName            string `mapstructure:"DB_NAME"`
 	WebServerPort     string `mapstructure:"WEB_SERVER_PORT"`
+	WebServerHost     string `mapstructure:"WEB_SERVER_HOST"`
 	GRPCServerPort    string `mapstructure:"GRPC_SERVER_PORT"`
 	GraphQLServerPort string `mapstructure:"GRAPHQL_SERVER_PORT"`
+	MigrationPath     string `mapstructure:"MIGRATION_PATH"`
 }
 
 func LoadConfig(path string) (*conf, error) {

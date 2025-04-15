@@ -1,6 +1,24 @@
 version: '3'
 
 services:
+
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+      - "8080:8080"
+      - "3000:3000"
+    volumes:
+      - ./app:/app
+    env_file:
+      - ./app/.env
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
   mysql:
     image: mysql:5.7
     container_name: mysql
@@ -31,20 +49,20 @@ services:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
 
-  migrate:
-    image: migrate/migrate
-    command: -path=/migrations -database "mysql://${DB_USER}:${DB_PASSWORD}@tcp(${DB_HOST}:${DB_PORT})/${DB_NAME}" up
-    depends_on:
-      mysql:
-        condition: service_healthy
-    volumes:
-      - ./migrations:/migrations
+  # migrate:
+  #   image: migrate/migrate
+  #   command: -path=/migrations -database "mysql://${DB_USER}:${DB_PASSWORD}@tcp(${DB_HOST}:${DB_PORT})/${DB_NAME}" up
+  #   depends_on:
+  #     mysql:
+  #       condition: service_healthy
+  #   volumes:
+  #     - ./migrations:/migrations
 
 
-    environment:
-      DB_DRIVER: ${DB_DRIVER}
-      DB_HOST: ${DB_HOST}
-      DB_PORT: ${DB_PORT}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_NAME: ${DB_NAME}
+  #   environment:
+  #     DB_DRIVER: ${DB_DRIVER}
+  #     DB_HOST: ${DB_HOST}
+  #     DB_PORT: ${DB_PORT}
+  #     DB_USER: ${DB_USER}
+  #     DB_PASSWORD: ${DB_PASSWORD}
+  #     DB_NAME: ${DB_NAME}
