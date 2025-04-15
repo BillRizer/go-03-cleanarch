@@ -17,6 +17,8 @@ cd go-03-cleanarch
 #run all 
 docker compose up --build -d
 
+>> o docker compose aguarda o mysql estar disponivel, isso pode demorar alguns segundos
+
 ```
 
 ## WEB
